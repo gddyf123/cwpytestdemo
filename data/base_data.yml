@@ -1,6 +1,6 @@
 init_admin_user:
-  username: "wintest"
-  password: "123456"
+  username: "arriveai"
+  password: "Arrive@2016"
 
 init_sql:
   insert_delete_user:

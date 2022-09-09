@@ -81,19 +81,22 @@ def login_user(username, password):
     """
     result = ResultBase()
     payload = {
-        "username": username,
+        "account": username,
         "password": password
     }
     header = {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/json;charset=UTF-8"
     }
     res = user.login(data=payload, headers=header)
+    print(payload,header,'payload111')
     result.success = False
-    if res.json()["code"] == 0:
+    print('resjson',res.text)
+    if res.json()["msg"] == '':
         result.success = True
-        result.token = res.json()["login_info"]["token"]
+        result.token = res.json()["result"]["token"]
+        print('token_info',result.token)
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["msg"])
+        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["msg"], res.json()["result"])
     result.msg = res.json()["msg"]
     result.response = res
     logger.info("登录用户 ==>> 返回结果 ==>> {}".format(result.response.text))

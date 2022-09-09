@@ -2,7 +2,8 @@ import pytest
 import os
 import allure
 from api.user import user
-from common.mysql_operate import db
+#mysql暂时有问题，不导入
+#from common.mysql_operate import db
 from common.read_data import data
 from common.logger import logger
 
